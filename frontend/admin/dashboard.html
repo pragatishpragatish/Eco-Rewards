@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoRewards - Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <h2>EcoRewards</h2>
+            <ul>
+                <li><a href="#" class="active" data-page="dashboard">Dashboard</a></li>
+                <li><a href="#" data-page="users">Manage Users</a></li>
+                <li><a href="#" data-page="collectors">Manage Collectors</a></li>
+                <li><a href="#" data-page="schedules">Pickup Schedules</a></li>
+                <li><a href="#" data-page="rewards">Reward Settings</a></li>
+                <li><a href="#" data-page="analytics">Analytics</a></li>
+                <li><a href="#" id="logout">Logout</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <!-- Dashboard Overview -->
+            <div id="dashboard" class="page active">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-container">
+                    <div class="card">
+                        <h3>Total Users</h3>
+                        <p id="totalUsers">Loading...</p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Collectors</h3>
+                        <p id="totalCollectors">Loading...</p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Waste Collected (kg)</h3>
+                        <p id="totalWaste">Loading...</p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Points Awarded</h3>
+                        <p id="totalPoints">Loading...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage Users -->
+            <div id="users" class="page">
+                <h2>Manage Users</h2>
+                <div class="card">
+                    <h3>Add New User</h3>
+                    <form id="addUserForm">
+                        <div class="form-row">
+                            <label for="userName">Name</label>
+                            <input type="text" id="userName" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="userEmail">Email</label>
+                            <input type="email" id="userEmail" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="userPassword">Password</label>
+                            <input type="password" id="userPassword" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="userRole">Role</label>
+                            <select id="userRole" required>
+                                <option value="user">Household</option>
+                                <option value="collector">Collector</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-primary">Add User</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>User List</h3>
+                    <table id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Users will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Manage Collectors -->
+            <div id="collectors" class="page">
+                <h2>Manage Collectors</h2>
+                <div class="card">
+                    <h3>Collector List</h3>
+                    <table id="collectorsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Assigned Areas</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Collectors will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Pickup Schedules -->
+            <div id="schedules" class="page">
+                <h2>Pickup Schedules</h2>
+                <div class="card">
+                    <h3>Create New Schedule</h3>
+                    <form id="addScheduleForm">
+                        <div class="form-row">
+                            <label for="scheduleCollector">Collector</label>
+                            <select id="scheduleCollector" required>
+                                <!-- Collectors will be loaded here -->
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="scheduleArea">Area</label>
+                            <input type="text" id="scheduleArea" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="scheduleDate">Date</label>
+                            <input type="date" id="scheduleDate" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="scheduleTime">Time</label>
+                            <input type="time" id="scheduleTime" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Create Schedule</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>Upcoming Schedules</h3>
+                    <table id="schedulesTable">
+                        <thead>
+                            <tr>
+                                <th>Collector</th>
+                                <th>Area</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Schedules will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Reward Settings -->
+            <div id="rewards" class="page">
+                <h2>Reward Settings</h2>
+                <div class="card">
+                    <h3>Points Rate</h3>
+                    <form id="rewardSettingsForm">
+                        <div class="form-row">
+                            <label for="pointsPerKg">Points per Kilogram</label>
+                            <input type="number" id="pointsPerKg" step="0.1" min="0" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Update Rate</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Analytics -->
+            <div id="analytics" class="page">
+                <h2>Analytics</h2>
+                <div class="card">
+                    <h3>Waste Collection Trends</h3>
+                    <canvas id="wasteTrendsChart"></canvas>
+                </div>
+                <div class="card">
+                    <h3>User Participation</h3>
+                    <canvas id="userParticipationChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html> 
